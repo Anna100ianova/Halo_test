@@ -1,0 +1,116 @@
+.card_wrap {
+  background-color: var(--background-card);
+  border-radius: 24px;
+  box-shadow: 3px 2px 2px white;
+}
+.card_content {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+.card_category {
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--text-color);
+  opacity: 50%;
+  margin-bottom: 6px;
+}
+.card_title {
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+.card_block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+.price_block {
+  display: flex;
+  align-items: center;
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+.price_block:hover {
+  text-shadow: 1px 3px 2px rgb(151, 150, 150);
+}
+.card_price {
+  font-size: 32px;
+  line-height: 42px;
+}
+.card_dollar {
+  font-size: 22px;
+}
+
+.card_button {
+  font-size: 14px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  color: var(--button);
+  padding: 14px;
+  border-radius: 14px;
+  margin-left: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.card_button:hover {
+  background-color: var(--button);
+  color: white;
+  border-color: var(--button);
+}
+
+@media (min-width: 768px) {
+  .card_content {
+    padding: 18px;
+  }
+  .card_category {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 8px;
+  }
+  .card_title {
+    font-size: 28px;
+    line-height: 36px;
+    margin-bottom: 30px;
+  }
+  .card_price {
+    font-size: 42px;
+    line-height: 51px;
+  }
+  .card_dollar {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card_wrap {
+    width: 352px;
+  }
+  .card_content {
+    padding: 32px;
+  }
+  .card_category {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+  .card_title {
+    font-size: 40px;
+    line-height: 48px;
+    margin-bottom: 40px;
+  }
+  .card_price {
+    font-size: 60px;
+    line-height: 72px;
+  }
+  .card_dollar {
+    font-size: 30px;
+  }
+  .card_button {
+    font-size: 16px;
+    padding: 16px;
+    border-radius: 16px;
+    margin-left: 30px;
+  }
+}

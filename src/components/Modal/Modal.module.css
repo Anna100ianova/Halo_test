@@ -1,0 +1,90 @@
+.modal_wrapper {
+  background-color: rgba(255, 255, 255, 1);
+  padding: 50px 50px 65px 50px;
+  border-radius: 24px;
+}
+.modal_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modal_category {
+  font-size: 16px;
+  text-transform: uppercase;
+  opacity: 50%;
+}
+.modal_name {
+  font-size: 40px;
+  line-height: 48px;
+}
+.modal_price {
+  display: flex;
+  align-items: center;
+}
+.modal_dollar {
+  font-size: 30px;
+  width: 17px;
+  height: 35px;
+}
+.modal_salary {
+  font-size: 60px;
+}
+.modal_inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 32px 0px 0px 0px;
+}
+.modal_input {
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  opacity: 50%;
+  margin-bottom: 16px;
+}
+.modal_label {
+  position: relative;
+  z-index: 10;
+}
+
+.input_error {
+  border: 1px solid rgba(228, 63, 63, 1);
+  padding: 16px;
+  border-radius: 16px;
+  margin-bottom: 8px;
+}
+.input_success {
+  border: 1px solid rgba(75, 207, 160, 1);
+  padding: 16px;
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+.error_text {
+  color: rgba(228, 63, 63, 1);
+  font-size: 12px;
+  line-height: 16px;
+  padding: 3px;
+  margin-bottom: 8px;
+}
+.error_img {
+  position: absolute;
+  right: 10px;
+  top: 40%;
+  transform: translateY(-50%);
+}
+.modal_button {
+  width: 100%;
+  position: relative;
+}
+.btn_arrow {
+  position: absolute;
+  margin-left: 8px;
+  top: 15px;
+  right: 55px;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.modal_button:hover .btn_arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
