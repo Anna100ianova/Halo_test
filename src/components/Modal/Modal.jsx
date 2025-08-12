@@ -9,6 +9,7 @@ export const Modal = ({ closeModal, isModalOpen, selectedItem }) => {
   const [valueName, setValueName] = useState("");
   const [valueNumber, setValueNumber] = useState("");
   const [errorName, setErrorName] = useState("");
+
   const [errorNumber, setErrorNumber] = useState("");
   const [isValidName, setIsValidName] = useState(null);
   const [isValidNumber, setIsValidNumber] = useState(null);
