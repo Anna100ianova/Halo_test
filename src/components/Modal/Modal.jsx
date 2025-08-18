@@ -6,75 +6,78 @@ import img from "./image/error.svg";
 import img2 from "./image/arrow.svg";
 
 export const Modal = ({ closeModal, isModalOpen, selectedItem }) => {
-  const [valueName, setValueName] = useState("");
-  const [valueNumber, setValueNumber] = useState("");
-  const [errorName, setErrorName] = useState("");
+  // const [valueName, setValueName] = useState("");
+  // const [valueNumber, setValueNumber] = useState("");
+  const [formState, setFormState] = useState({ userName: "", number: "" });
+  const [errorState, setErrorState] = useState({ userName: "", number: "" });
+  const [isValid, setIsValid] = useState({
+    userName: null,
+    number: null,
+  });
 
-  const [errorNumber, setErrorNumber] = useState("");
-  const [isValidName, setIsValidName] = useState(null);
-  const [isValidNumber, setIsValidNumber] = useState(null);
-
-  const handleChangeName = (e) => {
-    setValueName(e.target.value);
-    setErrorName("");
-    setIsValidName(null);
-  };
-  const handleChangeNumber = (e) => {
-    setValueNumber(e.target.value);
-    setErrorNumber("");
-    setIsValidNumber(null);
+  const onInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormState({ ...formState, [name]: value });
   };
 
   const handleBlurName = (e) => {
     if (e.target.value.length < 3) {
-      return setErrorName("This field in required");
+      return setErrorState({
+        ...errorState,
+        userName: "This field in required",
+      });
     }
     if (e.target.value.length >= 12) {
-      return setErrorName("Should contain 12 characters");
+      return setErrorState({
+        ...errorState,
+        userName: "Should contain 12 characters",
+      });
     }
     if (!/[a-zA-Zа-яА-ЯёЁ]+$/.test(e.target.value)) {
-      return setErrorName("Only letters allowed");
+      return setErrorState({
+        ...errorState,
+        userName: "Only letters allowed",
+      });
     }
-    setIsValidName(true);
+    setIsValid({ ...isValid, userName: true });
   };
   const handleBlurNumber = (e) => {
     if (e.target.value.length < 3) {
-      return setErrorNumber("This field in required");
+      return setErrorState({
+        ...errorState,
+        number: "This field in required",
+      });
     }
     if (e.target.value.length >= 12) {
-      return setErrorNumber("Should contain 12 characters");
+      return setErrorState({
+        ...errorState,
+        number: "Should contain 12 characters",
+      });
     }
     if (Number.isInteger(e.target.value)) {
-      return setErrorNumber("Must be a number");
+      return setErrorState({
+        ...errorState,
+        number: "Must be a number",
+      });
     }
-    setIsValidNumber(true);
+    setIsValid({ ...isValid, number: true });
   };
   const addToConsole = () => {
-    if (!errorName && !errorNumber) {
-      console.log(`Name: ${valueName}  Number:${valueNumber}`);
+    if (!errorState.userName && !errorState.number) {
+      console.log(`Name: ${formState.userName}  Number:${formState.number}`);
     }
   };
-  const clearNameError = () => {
-    setErrorName("");
-    setValueName("");
-    setIsValidName(null);
-    setIsValidNumber(null);
+  const clearError = (fieldName) => {
+    setErrorState({ ...errorState, [fieldName]: "" });
+    setFormState({ ...formState, [fieldName]: "" });
+    setIsValid({ ...isValid, [fieldName]: null });
   };
 
-  function getValueNameClassName() {
-    if (errorName) {
+  function getClassName(fieldName) {
+    if (errorState[fieldName]) {
       return styles.input_error;
     }
-    if (isValidName) {
-      return styles.input_success;
-    }
-    return styles.modal_input;
-  }
-  function getValueNumberClassName() {
-    if (errorNumber) {
-      return styles.input_error;
-    }
-    if (isValidNumber) {
+    if (isValid[fieldName]) {
       return styles.input_success;
     }
     return styles.modal_input;
@@ -93,37 +96,45 @@ export const Modal = ({ closeModal, isModalOpen, selectedItem }) => {
           <div className={styles.modal_inputs} id="123">
             <label className={styles.modal_label}>
               <input
-                name="name"
+                name="userName"
                 type="text"
-                value={valueName}
+                value={formState.userName}
                 placeholder="Name"
-                className={getValueNameClassName()}
-                onChange={handleChangeName}
+                className={getClassName("userName")}
+                onChange={onInputChange}
                 onBlur={handleBlurName}
               ></input>
-              {errorName && (
+              {errorState.userName && (
                 <img
                   className={styles.error_img}
                   src={img}
-                  onClick={clearNameError}
+                  onClick={() => clearError("userName")}
                 />
               )}
             </label>
-            {errorName && <div className={styles.error_text}>{errorName}</div>}
+            {errorState.userName && (
+              <div className={styles.error_text}>{errorState.userName}</div>
+            )}
             <label htmlFor="number" className={styles.modal_label}>
               <input
                 name="number"
-                value={valueNumber}
+                value={formState.number}
                 type="number"
-                onChange={handleChangeNumber}
+                onChange={onInputChange}
                 onBlur={handleBlurNumber}
-                className={getValueNumberClassName()}
+                className={getClassName("number")}
                 placeholder="Number"
               ></input>
-              {errorNumber && <img className={styles.error_img} src={img} />}
+              {errorState.number && (
+                <img
+                  className={styles.error_img}
+                  src={img}
+                  onClick={() => clearError("number")}
+                />
+              )}
             </label>
-            {errorNumber && (
-              <div className={styles.error_text}>{errorNumber}</div>
+            {errorState.number && (
+              <div className={styles.error_text}>{errorState.number}</div>
             )}
           </div>
           <div className={styles.modal_button}>
